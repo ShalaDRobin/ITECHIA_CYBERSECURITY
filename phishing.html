@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing - Cybersécurité ITECHIA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --transition: all 0.3s ease;
+            --icon-color: #9ACD32; /* Nouvelle couleur pistache pour les icônes */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+
+        }
+        
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .nav-links a i {
+            color: var(--icon-color); /* Icônes en vert pistache */
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Styles spécifiques à la page Phishing */
+        .section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            color: var(--icon-color); /* Icône en vert pistache */
+        }
+        
+        .content-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .interactive-example {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .email-sample {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+        
+        .check-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .check-button:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            display: none;
+        }
+        
+        .result i {
+            color: #ff9800;
+            margin-right: 8px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+        /* Styles pour les nouvelles sections */
+        .example-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .example-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .example-icon {
+            color: var(--icon-color); /* Icônes en vert pistache */
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+        
+        .detection-tips {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        
+        .tip-icon {
+            color: var(--icon-color); /* Icônes en vert pistache */
+            font-size: 1.1rem;
+            margin-top: 0.2rem;
+        }
+        
+        .action-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .action-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .step-icon {
+            color: var(--icon-color); /* Icônes en vert pistache */
+            font-size: 1.3rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .section {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="https://i-techia.com/wp-content/uploads/2024/10/itechia-techno.png" alt="ITECHIA Logo">
+        </a>
+        <div class="nav-links">
+            <a href="phishing.html" class="active">
+                <i class="fas fa-fish"></i>
+                Phishing
+            </a>
+            <a href="passwords.html">
+                <i class="fas fa-key"></i>
+                Mots de passe
+            </a>
+            <a href="data-leaks.html">
+                <i class="fas fa-database"></i>
+                Fuites de données
+            </a>
+            <a href="training.html">
+                <i class="fas fa-graduation-cap"></i>
+                Formations
+            </a>
+            <a href="quiz.html">
+                <i class="fas fa-question-circle"></i>
+                Quiz
+            </a>
+        </div>
+    </nav>
+    
+    <main class="section">
+        <div class="section-header">
+            <i class="fas fa-fish icon"></i>
+            <h2>Le Phishing : Reconnaître et Agir</h2>
+        </div>
+        
+        <div class="content-box">
+            <h3>Qu'est-ce que le phishing ?</h3>
+            <p>Le phishing (hameçonnage) est une technique frauduleuse visant à vous tromper pour :</p>
+            <ul>
+                <li>Voler vos identifiants (messagerie, accès aux outils clients)</li>
+                <li>Installer des logiciels malveillants (ransomware, espionnage)</li>
+                <li>Obtenir des informations sensibles (coordonnées clients, accès aux systèmes)</li>
+            </ul>
+        </div>
+
+        <div class="content-box">
+            <h3>Exemples concrets dans notre secteur</h3>
+            <div class="example-list">
+                <div class="example-item">
+                    <i class="fas fa-envelope example-icon"></i>
+                    <div>
+                        <strong>Faux e-mail d'un "client"</strong>
+                        <p>Demandant une modification urgente de rendez-vous avec un lien frauduleux</p>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <i class="fas fa-sms example-icon"></i>
+                    <div>
+                        <strong>SMS frauduleux</strong>
+                        <p>Prétendant venir d'un fournisseur ("Votre compte a été suspendu, cliquez ici")</p>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <i class="fas fa-phone example-icon"></i>
+                    <div>
+                        <strong>Appel téléphonique suspect</strong>
+                        <p>D'un "support technique" vous demandant vos mots de passe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h3>Comment détecter une tentative de phishing ?</h3>
+            <div class="detection-tips">
+                <div class="tip">
+                    <i class="fas fa-check-circle tip-icon"></i>
+                    <span>Vérifier l'adresse de l'expéditeur (ex: "service.client@itechia-fake.com" au lieu de "@i-techia.com")</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-check-circle tip-icon"></i>
+                    <span>Attention aux fautes d'orthographe et formulations étranges</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-check-circle tip-icon"></i>
+                    <span>Les urgences suspectes ("Votre compte sera bloqué dans 24h")</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-check-circle tip-icon"></i>
+                    <span>Liens et pièces jointes inattendus (toujours survoler un lien avant de cliquer)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box action-box">
+            <h3>Que faire en cas de doute ?</h3>
+            <div class="action-steps">
+                <div class="step">
+                    <i class="fas fa-ban step-icon"></i>
+                    <p>Ne pas répondre, ne pas cliquer</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-flag step-icon"></i>
+                    <p>Signaler immédiatement à l'équipe IT (ex: forwarder l'e-mail à contact@i-techia.com)</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-sync-alt step-icon"></i>
+                    <p>Si vous avez cliqué par erreur, changer votre mot de passe et alerter la sécurité</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="interactive-example">
+            <h4>Exercice pratique : Analysez cet e-mail</h4>
+            <div class="email-sample">
+                <p>"Bonjour, suite à une mise à jour de sécurité, veuillez confirmer vos identifiants ici : contact@i-teclia.com. Faute de réponse, votre accès sera désactivé."</p>
+            </div>
+            <button class="check-button">
+                <i class="fas fa-search"></i>
+                Vérifier si c'est du phishing
+            </button>
+            <div class="result hidden">
+                <p><i class="fas fa-exclamation-triangle"></i> C'est bien une tentative de phishing ! Les indices : urgence créée artificiellement, lien suspect, demande d'identifiants.</p>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Interaction pour l'exercice de phishing
+        document.querySelector('.check-button').addEventListener('click', function() {
+            const result = document.querySelector('.result');
+            result.classList.remove('hidden');
+            result.style.display = 'block';
+            this.innerHTML = `<i class="fas fa-check"></i> Solution révélée`;
+            
+            // Animation
+            result.style.animation = 'fadeIn 0.5s ease-out';
+        });
+        
+        // Ajout de l'animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Effet de chargement
+        document.body.style.opacity = '0';
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

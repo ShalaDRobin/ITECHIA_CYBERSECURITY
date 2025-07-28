@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuites de données - Cybersécurité ITECHIA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --transition: all 0.3s ease;
+            --icon-color: #9ACD32; /* Nouvelle couleur pistache pour les icônes */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+        }
+        
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .nav-links a i {
+            color: var(--icon-color); /* Icônes en vert pistache */
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Styles spécifiques à la page */
+        .section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            color: var(--icon-color); /* Icône en vert pistache */
+        }
+        
+        .content-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .practice-box {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .best-practice {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            color: var(--icon-color); /* Icônes en vert pistache */
+            margin-top: 0.2rem;
+        }
+        
+        .risk-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .risk-icon {
+            color: var(--icon-color); /* Icônes en vert pistache */
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+        
+        .action-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .step-icon {
+            color: var(--icon-color); /* Icônes en vert pistache */
+            font-size: 1.3rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn i {
+            color: white; /* Icônes des boutons en blanc */
+        }
+        
+        .btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        /* Style pour toutes les icônes Font Awesome */
+        .fa-exclamation-triangle, .fa-user-shield, .fa-exclamation-circle,
+        .fa-envelope, .fa-lock, .fa-usb, .fa-wifi,
+        .fa-envelope-open-text, .fa-laptop, .fa-list-ol, .fa-eye-slash {
+            color: var(--icon-color); /* Icônes en vert pistache */
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .section {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="https://i-techia.com/wp-content/uploads/2024/10/itechia-techno.png" alt="ITECHIA Logo">
+        </a>
+        <div class="nav-links">
+            <a href="phishing.html">
+                <i class="fas fa-fish"></i>
+                Phishing
+            </a>
+            <a href="passwords.html">
+                <i class="fas fa-key"></i>
+                Mots de passe
+            </a>
+            <a href="data-leaks.html" class="active">
+                <i class="fas fa-database"></i>
+                Fuites de données
+            </a>
+            <a href="training.html">
+                <i class="fas fa-graduation-cap"></i>
+                Formations
+            </a>
+            <a href="quiz.html">
+                <i class="fas fa-question-circle"></i>
+                Quiz
+            </a>
+        </div>
+    </nav>
+    
+    <main class="section">
+        <div class="section-header">
+            <i class="fas fa-database icon"></i>
+            <h2>Éviter les Fuites de Données Clients</h2>
+        </div>
+        
+        <div class="content-box">
+            <h3>Nos Obligations</h3>
+            <p>ITECHIA gère des données sensibles :</p>
+            <ul>
+                <li>Noms, coordonnées, historiques de rendez-vous</li>
+                <li>Feedback clients (mesure de satisfaction)</li>
+                <li>Accès aux systèmes de gestion des files d'attente</li>
+            </ul>
+            
+            <div style="margin-top: 2rem;">
+                <h4>Une fuite pourrait entraîner :</h4>
+                <div class="risk-item">
+                    <i class="fas fa-exclamation-triangle risk-icon"></i>
+                    <span>Des amendes RGPD</span>
+                </div>
+                <div class="risk-item">
+                    <i class="fas fa-user-shield risk-icon"></i>
+                    <span>Une perte de confiance des clients</span>
+                </div>
+                <div class="risk-item">
+                    <i class="fas fa-exclamation-circle risk-icon"></i>
+                    <span>Des perturbations opérationnelles</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-box">
+            <h3>Les Bonnes Pratiques</h3>
+            <div class="best-practice">
+                <i class="fas fa-envelope practice-icon"></i>
+                <div>
+                    <strong>Ne pas envoyer de données clients par e-mail non chiffré</strong>
+                    <p>Utiliser des solutions sécurisées comme un coffre-fort numérique</p>
+                </div>
+            </div>
+            <div class="best-practice">
+                <i class="fas fa-lock practice-icon"></i>
+                <div>
+                    <strong>Verrouiller son poste en quittant son bureau (Windows + L)</strong>
+                    <p>Même pour de courtes absences</p>
+                </div>
+            </div>
+            <div class="best-practice">
+                <i class="fas fa-usb practice-icon"></i>
+                <div>
+                    <strong>Ne pas utiliser de clés USB non autorisées</strong>
+                    <p>Privilégier les solutions cloud approuvées par la DSI</p>
+                </div>
+            </div>
+            <div class="best-practice">
+                <i class="fas fa-wifi practice-icon"></i>
+                <div>
+                    <strong>Éviter le Wi-Fi public pour accéder aux outils métiers</strong>
+                    <p>Toujours utiliser le VPN en déplacement</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-box practice-box">
+            <h3>Que faire en cas d'erreur ?</h3>
+            <div class="action-steps">
+                <div class="step">
+                    <i class="fas fa-envelope-open-text step-icon"></i>
+                    <div>
+                        <strong>Si vous avez envoyé un fichier à la mauvaise personne :</strong>
+                        <p>Alertez immédiatement votre responsable et l'IT</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fas fa-laptop step-icon"></i>
+                    <div>
+                        <strong>Si vous perdez un appareil professionnel :</strong>
+                        <p>Signalez-le immédiatement pour bloquer l'accès à distance</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="showProcedureBtn" class="btn" style="margin-top: 2rem;">
+                <i class="fas fa-list-ol"></i>
+                Voir la procédure complète
+            </button>
+            <div id="fullProcedure" class="hidden" style="margin-top: 1.5rem;">
+                <ol>
+                    <li>Contacter immédiatement le responsable sécurité</li>
+                    <li>Fournir tous les détails de l'incident</li>
+                    <li>Ne pas tenter de corriger soi-même l'erreur</li>
+                    <li>Documenter l'heure et les circonstances de l'incident</li>
+                    <li>Suivre les instructions de l'équipe sécurité</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+    
+
+    
+    <script>
+        // Affichage de la procédure
+        document.getElementById('showProcedureBtn').addEventListener('click', function() {
+            const procedure = document.getElementById('fullProcedure');
+            procedure.classList.toggle('hidden');
+            this.innerHTML = procedure.classList.contains('hidden') 
+                ? '<i class="fas fa-list-ol"></i> Voir la procédure complète' 
+                : '<i class="fas fa-eye-slash"></i> Cacher la procédure';
+        });
+        
+        // Effet de chargement
+        document.body.style.opacity = '0';
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

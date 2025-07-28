@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Cybersécurité - ITECHIA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --transition: all 0.3s ease;
+            --icon-color: #9ACD32;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .nav-links a i {
+            color: var(--icon-color);
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            color: var(--icon-color);
+        }
+        
+        .training-module {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .module-icon {
+            font-size: 1.8rem;
+            color: var(--icon-color);
+        }
+        
+        .checklist {
+            margin: 1.5rem 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .checklist-icon {
+            color: var(--icon-color);
+            margin-top: 0.2rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+        
+        .critical {
+            background-color: #fadbd8;
+            color: #e74c3c;
+        }
+        
+        .important {
+            background-color: #fef9e7;
+            color: #f39c12;
+        }
+        
+        .good-practice {
+            background-color: #d5f5e3;
+            color: #27ae60;
+        }
+        
+        .interactive-box {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+        
+        .btn i {
+            color: white;
+        }
+        
+        .btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #27ae60;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fa-flask, .fa-lock, .fa-envelope, 
+        .fa-eye, .fa-eye-slash, .fa-lightbulb,
+        .fa-question-circle, .fa-check, .fa-file-signature,
+        .fa-times {
+            color: var(--icon-color);
+        }
+        
+        .fa-times {
+            color: #e74c3c !important;
+        }
+        
+        /* Styles pour la confirmation */
+        .confirmation-box {
+            background-color: #d5f5e3;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid #27ae60;
+            display: none;
+        }
+        
+        /* Notification de copie */
+        .copy-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .section {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="https://i-techia.com/wp-content/uploads/2024/10/itechia-techno.png" alt="ITECHIA Logo">
+        </a>
+        <div class="nav-links">
+            <a href="phishing.html">
+                <i class="fas fa-fish"></i>
+                Phishing
+            </a>
+            <a href="passwords.html">
+                <i class="fas fa-key"></i>
+                Mots de passe
+            </a>
+            <a href="data-leaks.html">
+                <i class="fas fa-database"></i>
+                Fuites de données
+            </a>
+            <a href="training.html" class="active">
+                <i class="fas fa-graduation-cap"></i>
+                Formation
+            </a>
+            <a href="quiz.html">
+                <i class="fas fa-question-circle"></i>
+                Quiz
+            </a>
+        </div>
+    </nav>
+    
+    <main class="section">
+        <div class="section-header">
+            <i class="fas fa-graduation-cap icon"></i>
+            <h2>Formation Cybersécurité pour les Employés</h2>
+        </div>
+        
+        <!-- Module 1 : Protection des Données -->
+        <div class="training-module">
+            <div class="module-header">
+                <i class="fas fa-database module-icon"></i>
+                <h3>Protection des Données Clients</h3>
+            </div>
+            
+            <p>Sécurisez les informations sensibles conformément au RGPD et aux politiques ITECHIA.</p>
+            
+            <div class="checklist">
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Durée de conservation</strong>
+                        <p>Supprimez automatiquement les données clients après :</p>
+                        <ul>
+                            <li>3 ans pour les historiques de rendez-vous</li>
+                            <li>1 an pour les feedbacks clients</li>
+                            <li>6 mois pour les documents temporaires</li>
+                        </ul>
+                        <span class="badge critical">Critique</span>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Partage sécurisé</strong>
+                        <p>Utilisez uniquement :</p>
+                        <ul>
+                            <li>SharePoint avec permissions restreintes</li>
+                            <li>Mails chiffrés pour les données sensibles</li>
+                            <li>Jamais de clés USB ou WeTransfer</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4><i class="fas fa-flask"></i> Cas Pratique</h4>
+                    <p>Un client demande la suppression de ses données. Quelle procédure suivre ?</p>
+                    <button class="btn" id="showDataProcedure">
+                        <i class="fas fa-eye"></i>
+                        Voir la procédure
+                    </button>
+                    <div id="dataProcedure" class="hidden">
+                        <ol style="margin-top: 1rem;">
+                            <li>Vérifier l'identité du client (pièce jointe signée)</li>
+                            <li>Transmettre la demande à <strong>service-client@i-techia.com</strong></li>
+                            <li>Supprimer les données des systèmes actifs sous 72h</li>
+                            <li>Confirmer par écrit la réalisation</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Module 2 : Sécurité des Accès -->
+        <div class="training-module">
+            <div class="module-header">
+                <i class="fas fa-key module-icon"></i>
+                <h3>Gestion des Accès Sécurisés</h3>
+            </div>
+            
+            <p>Protégez les comptes et systèmes contre les intrusions.</p>
+            
+            <div class="checklist">
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Mots de passe</strong>
+                        <p>Exigences minimales :</p>
+                        <ul>
+                            <li>14 caractères minimum</li>
+                            <li>Majuscules, minuscules, chiffres, symboles</li>
+                            <li>Unique pour chaque service</li>
+                            <li>Changé tous les 90 jours</li>
+                        </ul>
+                        <span class="badge critical">Critique</span>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Authentification</strong>
+                        <p>Activer systématiquement :</p>
+                        <ul>
+                            <li>2FA (Authentification à Deux Facteurs)</li>
+                            <li>VPN pour les accès distants</li>
+                            <li>Verrouillage automatique après 5 min</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4><i class="fas fa-lock"></i> Bon Mot de Passe</h4>
+                    <p>Transformez cette phrase en mot de passe sécurisé :<br>
+                    <em>"ITECHIA protège mes données en 2024"</em></p>
+                    <button class="btn" id="showPasswordExample">
+                        <i class="fas fa-lightbulb"></i>
+                        Voir la solution
+                    </button>
+                    <div id="passwordExample" class="hidden">
+                        <p style="margin-top: 1rem; font-family: monospace; font-size: 1.2rem;">
+                            <strong>Exemple :</strong> IT3ch!@-Pr0t3g3#2024
+                        </p>
+                        <p>Technique : Prendre les initiales, ajouter symboles et chiffres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Module 3 : Phishing -->
+        <div class="training-module">
+            <div class="module-header">
+                <i class="fas fa-fish module-icon"></i>
+                <h3>Détection des Tentatives de Phishing</h3>
+            </div>
+            
+            <p>Reconnaître et signaler les attaques par hameçonnage.</p>
+            
+            <div class="checklist">
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Signes d'alerte</strong>
+                        <ul>
+                            <li>Email adressé à "Chèr(e) collaborateur" au lieu de votre nom</li>
+                            <li>Lien dissimulé (survolez pour voir la vraie URL)</li>
+                            <li>Demande urgente d'identifiants</li>
+                            <li>Adresse d'expéditeur suspecte (ex : itechia.support@gmail.com)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Procédure de signalement</strong>
+                        <ol>
+                            <li>Ne pas répondre/cliquer</li>
+                            <li>Forwarder l'email à <strong>phishing@itechia.com</strong></li>
+                            <li>Si cliqué par erreur, changer son mot de passe immédiatement</li>
+                        </ol>
+                        <span class="badge important">Important</span>
+                    </div>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4><i class="fas fa-envelope"></i> Exercice : Vrai ou Faux ?</h4>
+                    <p>"service.client@support-itechia.com" est une adresse email officielle.</p>
+                    <button class="btn" id="showPhishingAnswer">
+                        <i class="fas fa-question-circle"></i>
+                        Vérifier
+                    </button>
+                    <div id="phishingAnswer" class="hidden">
+                        <p style="margin-top: 1rem;">
+                            <i class="fas fa-times"></i> <strong>Faux !</strong><br>
+                            Nos adresses utilisent toujours le domaine <strong>@i-techia.com</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Module 4 : Sécurité Physique -->
+        <div class="training-module">
+            <div class="module-header">
+                <i class="fas fa-lock module-icon"></i>
+                <h3>Sécurité Physique & Télétravail</h3>
+            </div>
+            
+            <p>Protégez les informations dans l'environnement de travail.</p>
+            
+            <div class="checklist">
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>Au bureau</strong>
+                        <ul>
+                            <li>Ne pas laisser de documents sur l'imprimante</li>
+                            <li>Utiliser le broyeur pour les documents sensibles</li>
+                            <li>Badge requis pour accéder aux zones sensibles</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <i class="fas fa-check-circle checklist-icon"></i>
+                    <div>
+                        <strong>En télétravail</strong>
+                        <ul>
+                            <li>Connexion obligatoire via VPN</li>
+                            <li>Éviter les Wi-Fi publics</li>
+                            <li>Ne pas utiliser d'appareils personnels pour le travail</li>
+                            <li>Verrouiller l'écran dès qu'on quitte son poste</li>
+                        </ul>
+                        <span class="badge good-practice">Bonnes pratiques</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-accent" id="validateTraining" style="margin-top: 2rem;">
+                <i class="fas fa-file-signature"></i>
+                Valider ma formation
+            </button>
+            <div id="trainingConfirmation" class="confirmation-box">
+                <i class="fas fa-check-circle"></i> <strong>Formation validée avec succès !</strong>
+                <p>Votre participation a été enregistrée. Merci pour votre engagement dans la sécurité informatique.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification de copie -->
+    <div id="copyNotification" class="copy-notification">
+        <i class="fas fa-check-circle"></i> Texte copié dans le presse-papiers !
+    </div>
+    
+    <script>
+        // Interactions de formation
+        document.getElementById('showDataProcedure').addEventListener('click', function() {
+            const element = document.getElementById('dataProcedure');
+            element.classList.toggle('hidden');
+            this.innerHTML = element.classList.contains('hidden') 
+                ? '<i class="fas fa-eye"></i> Voir la procédure' 
+                : '<i class="fas fa-eye-slash"></i> Cacher';
+        });
+        
+        document.getElementById('showPasswordExample').addEventListener('click', function() {
+            const element = document.getElementById('passwordExample');
+            element.classList.toggle('hidden');
+            this.innerHTML = element.classList.contains('hidden') 
+                ? '<i class="fas fa-lightbulb"></i> Voir la solution' 
+                : '<i class="fas fa-lightbulb"></i> Cacher';
+        });
+        
+        document.getElementById('showPhishingAnswer').addEventListener('click', function() {
+            const element = document.getElementById('phishingAnswer');
+            element.classList.toggle('hidden');
+            this.innerHTML = element.classList.contains('hidden') 
+                ? '<i class="fas fa-question-circle"></i> Vérifier' 
+                : '<i class="fas fa-check"></i> Réponse vue';
+        });
+        
+        // Validation de la formation
+        document.getElementById('validateTraining').addEventListener('click', function() {
+            const confirmation = document.getElementById('trainingConfirmation');
+            
+            // Afficher la confirmation
+            confirmation.style.display = 'block';
+            
+            // Changer le bouton
+            this.innerHTML = '<i class="fas fa-check"></i> Formation validée';
+            this.style.backgroundColor = '#27ae60';
+            this.disabled = true;
+            
+            // Afficher la notification
+            showCopyNotification('Formation validée avec succès !');
+            
+            // Optionnel: Envoyer une requête au serveur pour enregistrer la validation
+            // fetch('/api/validate-training', { method: 'POST' })
+            //     .then(response => response.json())
+            //     .then(data => console.log('Success:', data))
+            //     .catch(error => console.error('Error:', error));
+        });
+        
+        // Fonction pour afficher une notification de copie
+        function showCopyNotification(message) {
+            const notification = document.getElementById('copyNotification');
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            notification.style.display = 'block';
+            
+            // Masquer après 3 secondes
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Effet de chargement
+        document.body.style.opacity = '0';
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
